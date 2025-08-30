@@ -1,0 +1,35 @@
+﻿@model IReadOnlyList<Storybook.Mvc.Models.StoryNode>
+@{
+    ViewData["Title"] = "Little Red Riding Hood — Full Story";
+}
+
+<div class="container py-4">
+    <div class="card story-card mb-4">
+        <div class="card-body p-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+            <div class="mb-3 mb-md-0">
+                <h1 class="display-6 story-title">Little Red Riding Hood</h1>
+                <div class="story-subtitle">Linked List ➜ Merge Sort ➜ MVC</div>
+            </div>
+            <div class="d-flex gap-2">
+                <a class="btn btn-ink" asp-action="Index">Full Story</a>
+                <a class="btn btn-outline-ink" asp-action="Line">Line-by-Line</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card story-card">
+        <div class="card-body p-4">
+            <h5 class="mb-3 ink-heading">Full Story (Sorted)</h5>
+            <hr class="ornament mb-4" />
+            <div class="story-flow">
+                @foreach (var n in Model)
+                {
+                    <div class="mb-4">
+                        <div class="chapter-pill">#@n.Number</div>
+                        <p class="mb-0 mt-2 story-text">@n.Text</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

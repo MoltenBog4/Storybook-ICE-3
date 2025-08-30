@@ -1,0 +1,38 @@
+﻿@model Storybook.Mvc.Models.StoryNode
+@{
+    ViewData["Title"] = "Little Red Riding Hood — Line-by-Line";
+    var index = (int)ViewBag.Index;
+    var count = (int)ViewBag.Count;
+    var prev = index > 0 ? index - 1 : 0;
+    var next = index < count - 1 ? index + 1 : count - 1;
+}
+
+<div class="container py-4">
+    <div class="card story-card mb-4">
+        <div class="card-body p-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+            <div class="mb-3 mb-md-0">
+                <h1 class="display-6 story-title">Line-by-Line</h1>
+                <div class="story-subtitle">Use the buttons to navigate.</div>
+            </div>
+            <div class="d-flex gap-2">
+                <a class="btn btn-outline-ink" asp-action="Index">Full Story</a>
+                <a class="btn btn-ink" asp-action="Line" asp-route-index="@index">Line-by-Line</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card story-card">
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="chapter-pill">#@Model.Number</div>
+                <div class="page-indicator">@(@index + 1) / @count</div>
+            </div>
+            <p class="lead story-text fade-in">“@Model.Text”</p>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-2 mt-3">
+        <a class="btn btn-outline-ink" asp-action="Line" asp-route-index="@prev">⏮ Previous</a>
+        <a class="btn btn-ink" asp-action="Line" asp-route-index="@next">Next ▶️</a>
+    </div>
+</div>
